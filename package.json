@@ -41,6 +41,9 @@
 	"contributors": [
 		"Alexey Filippov <socket.someone@gmail.com>"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"dependencies": {},
 	"devDependencies": {
 		"@commitlint/cli": "17.7.1",
