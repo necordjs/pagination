@@ -51,6 +51,11 @@ export class PaginationBuilder {
 		return this;
 	}
 
+	public setPages(pages: PageBuilder[]): this {
+		this.pages = pages;
+		return this;
+	}
+
 	public addPage(page: PageBuilder): this {
 		this.pages.push(page);
 		return this;
