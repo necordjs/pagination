@@ -9,7 +9,7 @@ import { NecordPaginationOptions } from '../interfaces';
 import { PaginationAction } from '../enums';
 import assert = require('assert');
 
-type PagesFactory = (page: number) => PageBuilder | Promise<PageBuilder>;
+type PagesFactory = (page: number, maxPages: number) => PageBuilder | Promise<PageBuilder>;
 type PagesFilter = (interaction: BaseInteraction) => boolean;
 
 export class PaginationBuilder {
@@ -97,7 +97,7 @@ export class PaginationBuilder {
 		assert(this.maxPages !== null, 'Max pages must be set if no pages are provided');
 		assert(this.maxPages >= page, `Page ${page} is out of range (max: ${this.maxPages})`);
 
-		const pageBuilder = this.pages[page - 1] ?? (await this.pagesFactory(page));
+		const pageBuilder = this.pages[page - 1] ?? (await this.pagesFactory(page, this.maxPages));
 		const pageOptions = pageBuilder.build();
 		const buttons = this.generateButtons(page);
 
