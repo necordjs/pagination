@@ -17,7 +17,7 @@
     <a href='https://img.shields.io/github/last-commit/necordjs/necord'><img src="https://img.shields.io/github/last-commit/SocketSomeone/necord" alt="Last commit" /></a>
 </p>
 
-### Installation
+## Installation
 
 **Node.js 16.6.0 or newer is required.**
 
