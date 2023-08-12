@@ -21,6 +21,7 @@ export class NecordPaginationController {
 		@Context() [interaction]: ButtonContext,
 		@ComponentParam('name') name: string
 	) {
+		const pageBuilder = this.paginationService.get(name);
 		const modal = new ModalBuilder()
 			.setCustomId(`necord-pagination-modal/${name}`)
 			.setTitle('Traversal');
@@ -29,6 +30,8 @@ export class NecordPaginationController {
 			.setLabel('Page')
 			.setCustomId('page')
 			.setPlaceholder('Enter page number')
+			.setMinLength(1)
+			.setMaxLength(pageBuilder.maxPages.toString().length)
 			.setStyle(TextInputStyle.Short)
 			.setRequired(true);
 
