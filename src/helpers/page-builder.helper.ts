@@ -43,7 +43,7 @@ export class PageBuilder {
 		return {
 			content: this.content,
 			embeds: this.embeds,
-			files: [],
+			files: this.files,
 			components: this.components
 		};
 	}
