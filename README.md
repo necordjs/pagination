@@ -52,7 +52,7 @@ import { AppService } from './app.service';
         }),
         NecordPaginationModule.forRoot({
             // Change your buttons appearance
-            buttons: [],
+            buttons: {},
             // Add buttons for skip to first and last page
             allowSkip: true,
             // Add buttons for search page
