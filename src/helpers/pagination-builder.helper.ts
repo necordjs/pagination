@@ -91,7 +91,7 @@ export class PaginationBuilder {
 
 		assert(!!this.customId, 'Custom id must be set');
 		assert(
-			this.pagesFactory && this.pages.length === 0,
+			!!this.pagesFactory || this.pages.length >= 1,
 			'Pages factory must be set if no pages are provided'
 		);
 		assert(this.maxPages !== null, 'Max pages must be set if no pages are provided');
