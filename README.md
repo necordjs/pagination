@@ -41,6 +41,7 @@ Once the installation process is complete, we can import the `NecordPaginationMo
 ```typescript
 import { NecordModule } from 'necord';
 import { Module } from '@nestjs/common';
+import { NecordPaginationModule } from '@necord/pagination';
 import { AppService } from './app.service';
 
 @Module({
