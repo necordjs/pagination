@@ -31,7 +31,7 @@ export class NecordPaginationController {
 			.setCustomId('page')
 			.setPlaceholder('Enter page number')
 			.setMinLength(1)
-			.setMaxLength(pageBuilder.maxPages.toString().length)
+			.setMaxLength(String(pageBuilder.maxPages).length)
 			.setStyle(TextInputStyle.Short)
 			.setRequired(true);
 
