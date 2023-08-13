@@ -29,7 +29,7 @@ export class PaginationBuilder {
 		this._maxPages = value;
 	}
 
-	public filter: PagesFilter = () => true;
+	public filter: PagesFilter = async () => true;
 
 	private pages: PageBuilder[] = [];
 
