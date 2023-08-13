@@ -9,8 +9,8 @@ import { NecordPaginationOptions } from '../interfaces';
 import { PaginationAction } from '../enums';
 import assert = require('assert');
 
-type PagesFactory = (page: number, maxPages: number) => PageBuilder | Promise<PageBuilder>;
-type PagesFilter = (interaction: BaseInteraction) => boolean;
+type PagesFactory = (page: number, maxPages: number) => Promise<PageBuilder>;
+type PagesFilter = (interaction: BaseInteraction) => Promise<boolean>;
 
 export class PaginationBuilder {
 	public customId: string;

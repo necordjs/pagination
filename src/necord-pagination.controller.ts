@@ -1,14 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { NecordPaginationService } from './necord-pagination.service';
-import {
-	Button,
-	ButtonContext,
-	ComponentParam,
-	Context,
-	Modal,
-	ModalContext,
-	ModalParam
-} from 'necord';
+import { Button, ButtonContext, ComponentParam, Context, Modal, ModalParam } from 'necord';
 import { PaginationForbiddenException, PaginationNotFoundException } from './exceptions';
 import { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
 
@@ -25,6 +17,10 @@ export class NecordPaginationController {
 		const modal = new ModalBuilder()
 			.setCustomId(`necord-pagination-modal/${name}`)
 			.setTitle('Traversal');
+
+		if (!pageBuilder) throw new PaginationNotFoundException();
+
+		if (!(await pageBuilder.filter(interaction))) throw new PaginationForbiddenException();
 
 		const pageInput = new TextInputBuilder()
 			.setLabel('Page')
@@ -52,7 +48,7 @@ export class NecordPaginationController {
 
 		if (!pageBuilder) throw new PaginationNotFoundException();
 
-		if (!pageBuilder.filter(interaction)) throw new PaginationForbiddenException();
+		if (!(await pageBuilder.filter(interaction))) throw new PaginationForbiddenException();
 
 		const pageOptions = await pageBuilder.build(+page);
 
