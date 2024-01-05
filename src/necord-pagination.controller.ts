@@ -62,7 +62,7 @@ export class NecordPaginationController {
 
 		if (!pageBuilder) throw new PaginationNotFoundException();
 
-		if (!pageBuilder.filter(interaction)) throw new PaginationForbiddenException();
+		if (!(await pageBuilder.filter(interaction))) throw new PaginationForbiddenException();
 
 		const pageOptions = await pageBuilder.build(page);
 
