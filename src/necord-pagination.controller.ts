@@ -57,7 +57,7 @@ export class NecordPaginationController {
 
 	@Modal('necord-pagination-modal/:name')
 	public async onTraversalModal(@Context() [interaction], @ModalParam('name') name: string) {
-		const pageBuilder = this.paginationService.get('test');
+		const pageBuilder = this.paginationService.get(name);
 		const page = +interaction.fields.getTextInputValue('page');
 
 		if (!pageBuilder) throw new PaginationNotFoundException();
