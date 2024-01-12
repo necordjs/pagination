@@ -12,7 +12,7 @@ class PaginationSpec implements OnModuleInit {
 			builder
 				.setCustomId('test')
 				.setMaxPages(5)
-				.setPagesFactory(page => new PageBuilder().setContent(`Page ${page}`))
+				.setPagesFactory(async page => new PageBuilder().setContent(`Page ${page}`))
 		);
 	}
 

@@ -4,7 +4,7 @@ import { PaginationAction } from '../enums';
 export interface ButtonAppearance {
 	style: Exclude<ButtonStyle, ButtonStyle.Link>;
 	label: string;
-	emoji: string;
+	emoji?: string;
 }
 
 export type ButtonsAppearance = {
