@@ -158,12 +158,17 @@ export class PaginationBuilder {
 					navigationPage = 'traversal';
 			}
 
-			return new ButtonBuilder()
+			const builder = new ButtonBuilder()
 				.setStyle(button.style)
-				.setEmoji(button.emoji)
 				.setLabel(button.label)
 				.setDisabled(disabled)
 				.setCustomId(`necord-pagination/${this.customId}/${navigationPage}`);
+
+			if (button.emoji) {
+				builder.setEmoji(button.emoji);
+			}
+
+			return new ButtonBuilder();
 		});
 	}
 }
