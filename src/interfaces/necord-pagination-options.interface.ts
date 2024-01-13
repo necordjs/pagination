@@ -4,7 +4,7 @@ import { PaginationAction } from '../enums';
 export interface ButtonAppearance {
 	style: Exclude<ButtonStyle, ButtonStyle.Link>;
 	label: string;
-	emoji?: string;
+	emoji: string;
 }
 
 export interface ModalAppearance {
@@ -14,7 +14,7 @@ export interface ModalAppearance {
 }
 
 export type ButtonsAppearance = {
-	[key in PaginationAction]?: ButtonAppearance;
+	[key in PaginationAction]?: Partial<ButtonAppearance>;
 };
 
 export interface NecordPaginationOptions {
