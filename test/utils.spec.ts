@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { Module, Provider } from '@nestjs/common';
-import { IntentsBitField } from "discord.js";
+import { IntentsBitField } from 'discord.js';
 import { NecordModule } from 'necord';
 import { NecordPaginationModule } from '../src';
 

@@ -4,6 +4,7 @@ import { NecordPaginationOptions } from './interfaces';
 import { MODULE_OPTIONS_TOKEN } from './necord-pagination.module-definition';
 import { PaginationAction } from './enums';
 import { ButtonStyle } from 'discord.js';
+import * as deepMerge from 'deepmerge';
 
 @Injectable()
 export class NecordPaginationService {
@@ -47,14 +48,7 @@ export class NecordPaginationService {
 		@Inject(MODULE_OPTIONS_TOKEN)
 		private readonly options: NecordPaginationOptions
 	) {
-		this.options = {
-			...NecordPaginationService.DEFAULT_OPTIONS,
-			...options,
-			buttons: {
-				...NecordPaginationService.DEFAULT_OPTIONS.buttons,
-				...options.buttons
-			}
-		};
+		this.options = deepMerge(NecordPaginationService.DEFAULT_OPTIONS, options ?? {});
 	}
 
 	public register(factory: (builder: PaginationBuilder) => PaginationBuilder): PaginationBuilder {
