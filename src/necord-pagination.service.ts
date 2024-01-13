@@ -60,20 +60,12 @@ export class NecordPaginationService {
 	public register(factory: (builder: PaginationBuilder) => PaginationBuilder): PaginationBuilder {
 		const builder = factory(new PaginationBuilder(this.options));
 
-		if (this.cache.has(builder.customId)) {
-			this.logger.warn(`Pagination : ${builder.customId} already exists`);
-		}
-
 		this.cache.set(builder.customId, builder);
 
 		return builder;
 	}
 
 	public get(customId: string): PaginationBuilder {
-		if (!this.cache.has(customId)) {
-			this.logger.warn(`Pagination : ${customId} doesn't exists`);
-		}
-
 		return this.cache.get(customId);
 	}
 
