@@ -7,12 +7,19 @@ export interface ButtonAppearance {
 	emoji?: string;
 }
 
+export interface ModalAppearance {
+	title?: string;
+	label?: string;
+	placeholder?: string;
+}
+
 export type ButtonsAppearance = {
 	[key in PaginationAction]?: ButtonAppearance;
 };
 
 export interface NecordPaginationOptions {
 	buttons?: ButtonsAppearance;
+	modal?: ModalAppearance;
 	allowSkip?: boolean;
 	allowTraversal?: boolean;
 }

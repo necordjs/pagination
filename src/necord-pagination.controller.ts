@@ -1,12 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { NecordPaginationService } from './necord-pagination.service';
 import { Button, ButtonContext, ComponentParam, Context, Modal, ModalParam } from 'necord';
 import { PaginationForbiddenException, PaginationNotFoundException } from './exceptions';
 import { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
+import { ModalAppearance, NecordPaginationOptions } from './interfaces';
+import { MODULE_OPTIONS_TOKEN } from './necord-pagination.module-definition';
 
 @Injectable()
 export class NecordPaginationController {
-	public constructor(private readonly paginationService: NecordPaginationService) {}
+	public constructor(
+		private readonly paginationService: NecordPaginationService,
+		@Inject(MODULE_OPTIONS_TOKEN)
+		private readonly options: NecordPaginationOptions
+	) {}
 
 	@Button('necord-pagination/:name/traversal')
 	public async onTraversal(
@@ -14,18 +20,27 @@ export class NecordPaginationController {
 		@ComponentParam('name') name: string
 	) {
 		const pageBuilder = this.paginationService.get(name);
+		const modalOptions: ModalAppearance = Object.assign(
+			{
+				title: 'Traversal',
+				label: 'Page',
+				placeholder: 'Enter page number'
+			},
+			this.options?.modal ?? {}
+		);
+
 		const modal = new ModalBuilder()
 			.setCustomId(`necord-pagination-modal/${name}`)
-			.setTitle('Traversal');
+			.setTitle(modalOptions.title);
 
 		if (!pageBuilder) throw new PaginationNotFoundException();
 
 		if (!(await pageBuilder.filter(interaction))) throw new PaginationForbiddenException();
 
 		const pageInput = new TextInputBuilder()
-			.setLabel('Page')
+			.setLabel(modalOptions.label)
 			.setCustomId('page')
-			.setPlaceholder('Enter page number')
+			.setPlaceholder(modalOptions.placeholder)
 			.setMinLength(1)
 			.setMaxLength(String(pageBuilder.maxPages).length)
 			.setStyle(TextInputStyle.Short)
