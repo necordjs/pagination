@@ -156,6 +156,7 @@ export class PaginationBuilder {
 					break;
 				case PaginationAction.Traverse:
 					navigationPage = 'traversal';
+					break;
 			}
 
 			const builder = new ButtonBuilder()
@@ -168,7 +169,7 @@ export class PaginationBuilder {
 				builder.setEmoji(button.emoji);
 			}
 
-			return new ButtonBuilder();
+			return builder;
 		});
 	}
 }
