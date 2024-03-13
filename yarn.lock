@@ -5005,10 +5005,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-necord@6.6.1:
-  version "6.6.1"
-  resolved "https://registry.yarnpkg.com/necord/-/necord-6.6.1.tgz#2085579b6a61362bd3b554c8de2115708284f208"
-  integrity sha512-WIlkBkK4ZdtuvSNIB9XhgH8LRCVsuYj7ZDF4VGt3KAZkCF8pe24CwsLwb4A9CJECCOakBrvX0hlA15718GRZsg==
+necord@6.7.0:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/necord/-/necord-6.7.0.tgz#9ff6bbc5f8d0f9b7d092541a631fdfd459582cd5"
+  integrity sha512-9ifYCSKxjSRtsNenhe8RTS1L2KbtXxdfWPkiSLU3tHYDHE1d5xBR7KipfY+2HI0p2lzi1qOBWhm35S3YyBzhtQ==
   dependencies:
     path-to-regexp "6.2.1"
 
