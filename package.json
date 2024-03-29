@@ -65,7 +65,7 @@
 		"lint-staged": "15.2.2",
 		"necord": "6.8.1",
 		"prettier": "3.2.5",
-		"reflect-metadata": "0.2.1",
+		"reflect-metadata": "0.2.2",
 		"release-it": "17.1.1",
 		"rimraf": "5.0.5",
 		"rxjs": "7.8.1",
