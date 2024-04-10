@@ -4996,12 +4996,12 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-necord@6.8.1:
-  version "6.8.1"
-  resolved "https://registry.yarnpkg.com/necord/-/necord-6.8.1.tgz#f103922ee4ae3291c6eb32dc03eb947592d7f5be"
-  integrity sha512-AV+1FbYx0t6W/Nb0MTN3YEYZshKxKmxH3r5CV2sDkf6/OYE0FoDjbhRFsuqPQJgG+LilPsLR+vf+9ibZ5hLtkA==
+necord@6.8.3:
+  version "6.8.3"
+  resolved "https://registry.yarnpkg.com/necord/-/necord-6.8.3.tgz#d7ee6e5b726c7d65af57755fc6dada4db5cd3ce9"
+  integrity sha512-eYCvku/oqWU1uLN/onmKZ1Oy605fdvLTt46JiV6ko0/+XYPXDwYLNEHOrJwP1VY5sVrvMfeU11ZOJCTlpE+OvA==
   dependencies:
-    path-to-regexp "6.2.1"
+    path-to-regexp "6.2.2"
 
 negotiator@^0.6.3:
   version "0.6.3"
@@ -5395,10 +5395,10 @@ path-to-regexp@3.2.0:
   resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-3.2.0.tgz#fa7877ecbc495c601907562222453c43cc204a5f"
   integrity sha512-jczvQbCUS7XmS7o+y1aEO9OBVFeZBQ1MDSEqmO7xSoPgOPoowY/SxLpZ6Vh97/8qHZOteiCKb7gkG9gA2ZUxJA==
 
-path-to-regexp@6.2.1:
-  version "6.2.1"
-  resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-6.2.1.tgz#d54934d6798eb9e5ef14e7af7962c945906918e5"
-  integrity sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==
+path-to-regexp@6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-6.2.2.tgz#324377a83e5049cbecadc5554d6a63a9a4866b36"
+  integrity sha512-GQX3SSMokngb36+whdpRXE+3f9V8UzyAorlYvOGx87ufGHehNTn5lCxrKtLyZ4Yl/wEKnNnr98ZzOwwDZV5ogw==
 
 path-type@^4.0.0:
   version "4.0.0"
