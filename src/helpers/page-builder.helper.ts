@@ -1,11 +1,15 @@
 import { BaseMessageOptions as PageOptions } from 'discord.js';
 
+type NotReadOnly<T> = {
+	-readonly [P in keyof T]: T[P];
+};
+
 export class PageBuilder {
 	private content: PageOptions['content'] = null;
 
-	private embeds: PageOptions['embeds'] = [];
+	private embeds: NotReadOnly<PageOptions['embeds']> = [];
 
-	private files: PageOptions['files'] = [];
+	private files: NotReadOnly<PageOptions['files']> = [];
 
 	private components: PageOptions['components'] = [];
 
@@ -14,22 +18,22 @@ export class PageBuilder {
 		return this;
 	}
 
-	public setEmbeds(embeds: PageOptions['embeds']): this {
+	public setEmbeds(embeds: PageBuilder['embeds']): this {
 		this.embeds = embeds;
 		return this;
 	}
 
-	public addEmbed(embed: PageOptions['embeds'][0]): this {
+	public addEmbed(embed: PageBuilder['embeds'][0]): this {
 		this.embeds.push(embed);
 		return this;
 	}
 
-	public setFiles(files: PageOptions['files']): this {
+	public setFiles(files: PageBuilder['files']): this {
 		this.files = files;
 		return this;
 	}
 
-	public addFile(file: PageOptions['files'][0]): this {
+	public addFile(file: PageBuilder['files'][0]): this {
 		this.files.push(file);
 		return this;
 	}
