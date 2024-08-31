@@ -22,4 +22,5 @@ export interface NecordPaginationOptions {
 	modal?: ModalAppearance;
 	allowSkip?: boolean;
 	allowTraversal?: boolean;
+  buttonsPosition?: 'start' | 'end';
 }

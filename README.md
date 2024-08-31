@@ -56,7 +56,9 @@ import { AppService } from './app.service';
             // Add buttons for skip to first and last page
             allowSkip: true,
             // Add buttons for search page
-            allowTraversal: true
+            allowTraversal: true,
+            // Define the buttons position (start / end)
+            buttonsPosition: "end"
         })
     ],
     providers: [AppService]
