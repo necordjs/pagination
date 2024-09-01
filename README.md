@@ -58,7 +58,7 @@ import { AppService } from './app.service';
             // Add buttons for search page
             allowTraversal: true,
             // Define the buttons position (start / end)
-            buttonsPosition: "end"
+            buttonsPosition: 'end'
         })
     ],
     providers: [AppService]
