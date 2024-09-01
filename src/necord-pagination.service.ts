@@ -11,6 +11,7 @@ export class NecordPaginationService {
 	private static readonly DEFAULT_OPTIONS: NecordPaginationOptions = {
 		allowTraversal: false,
 		allowSkip: false,
+		buttonsPosition: 'end',
 		buttons: {
 			[PaginationAction.First]: {
 				label: 'First',
