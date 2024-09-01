@@ -106,7 +106,7 @@ export class PaginationBuilder {
 			...pageOptions,
 			components: this.options.buttonsPosition === 'end' 
 				? [...pageOptions.components, row] 
-        		: [row, ...pageOptions.components]
+				: [row, ...pageOptions.components]
 		};
 	}
 
