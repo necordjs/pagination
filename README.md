@@ -26,7 +26,7 @@ enhancing user engagement and ease of navigation. This module allows you to crea
 
 ## Installation
 
-**Node.js 16.6.0 or newer is required.**
+**Node.js 18.0.0 or newer is required.**
 
 ```bash
 $ npm i @necord/pagination necord discord.js
