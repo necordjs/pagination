@@ -4,5 +4,5 @@ import { NecordPaginationOptions } from './interfaces';
 export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } =
 	new ConfigurableModuleBuilder<NecordPaginationOptions>()
 		.setClassMethodName('forRoot')
-		.setFactoryMethodName('createModuleConfig')
+		.setFactoryMethodName('createNecordPaginationOptions')
 		.build();
