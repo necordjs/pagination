@@ -4171,12 +4171,12 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-necord@6.8.3:
-  version "6.8.3"
-  resolved "https://registry.yarnpkg.com/necord/-/necord-6.8.3.tgz#d7ee6e5b726c7d65af57755fc6dada4db5cd3ce9"
-  integrity sha512-eYCvku/oqWU1uLN/onmKZ1Oy605fdvLTt46JiV6ko0/+XYPXDwYLNEHOrJwP1VY5sVrvMfeU11ZOJCTlpE+OvA==
+necord@6.8.6:
+  version "6.8.6"
+  resolved "https://registry.yarnpkg.com/necord/-/necord-6.8.6.tgz#af56f16f0653ce2ab35f0c4c8b91299bc88525f6"
+  integrity sha512-LBJUSL3DAuyiLLyg6GKYLrIRlGeoFhN8+4S8w0CXz5sWDFBpUClBuxx8bK3JoFH3IlDxKydYchKrn1Y+RL8skw==
   dependencies:
-    path-to-regexp "6.2.2"
+    path-to-regexp "8.0.0"
 
 negotiator@^0.6.3:
   version "0.6.3"
@@ -4520,10 +4520,10 @@ path-to-regexp@3.3.0:
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-3.3.0.tgz#f7f31d32e8518c2660862b644414b6d5c63a611b"
   integrity sha512-qyCH421YQPS2WFDxDjftfc1ZR5WKQzVzqsp4n9M2kQhVOo/ByahFoUNJfl58kOcEGfQ//7weFTDhm+ss8Ecxgw==
 
-path-to-regexp@6.2.2:
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-6.2.2.tgz#324377a83e5049cbecadc5554d6a63a9a4866b36"
-  integrity sha512-GQX3SSMokngb36+whdpRXE+3f9V8UzyAorlYvOGx87ufGHehNTn5lCxrKtLyZ4Yl/wEKnNnr98ZzOwwDZV5ogw==
+path-to-regexp@8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-8.0.0.tgz#92076ec6b2eaf08be7c3233484142c05e8866cf5"
+  integrity sha512-GAWaqWlTjYK/7SVpIUA6CTxmcg65SP30sbjdCvyYReosRkk7Z/LyHWwkK3Vu0FcIi0FNTADUs4eh1AsU5s10cg==
 
 path-type@^4.0.0:
   version "4.0.0"
