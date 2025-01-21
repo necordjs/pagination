@@ -1,7 +1,7 @@
 {
 	"name": "@necord/pagination",
 	"description": "A lightweight Pagination module for Necord",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"scripts": {
 		"build": "rimraf dist && tsc -p tsconfig.build.json",
 		"prepublish:npm": "npm run build",
