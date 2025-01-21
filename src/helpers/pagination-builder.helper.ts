@@ -104,9 +104,10 @@ export class PaginationBuilder {
 		const row = new ActionRowBuilder<ButtonBuilder>().addComponents(buttons);
 		return {
 			...pageOptions,
-			components: this.options.buttonsPosition === 'end' 
-				? [...pageOptions.components, row] 
-				: [row, ...pageOptions.components]
+			components:
+				this.options.buttonsPosition === 'end'
+					? [...pageOptions.components, row]
+					: [row, ...pageOptions.components]
 		};
 	}
 
