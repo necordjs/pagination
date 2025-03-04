@@ -47,7 +47,6 @@ export class NecordPaginationService {
 		private readonly options: NecordPaginationOptions
 	) {
 		this.options = this.deepMerge(NecordPaginationService.DEFAULT_OPTIONS, options ?? {});
-		console.log(this.options);
 	}
 
 	public register(factory: (builder: PaginationBuilder) => PaginationBuilder): PaginationBuilder {
