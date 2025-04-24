@@ -1,10 +1,10 @@
-import { createApplication } from './utils.spec';
+import { createApplication } from './utils.local-spec';
 import { Context, SlashCommand, SlashCommandContext } from 'necord';
 import { NecordPaginationService, PageBuilder } from '../src';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 
 @Injectable()
-class PaginationSpec implements OnModuleInit {
+class PaginationLocalSpec implements OnModuleInit {
 	public constructor(private readonly paginationService: NecordPaginationService) {}
 
 	public onModuleInit() {
@@ -24,4 +24,4 @@ class PaginationSpec implements OnModuleInit {
 	}
 }
 
-createApplication(PaginationSpec);
+createApplication(PaginationLocalSpec);
