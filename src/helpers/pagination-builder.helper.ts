@@ -2,7 +2,8 @@ import {
 	ActionRowBuilder,
 	BaseInteraction,
 	BaseMessageOptions as PageOptions,
-	ButtonBuilder
+	ButtonBuilder,
+	ButtonInteraction
 } from 'discord.js';
 import { PageBuilder } from './page-builder.helper';
 import { NecordPaginationOptions } from '../interfaces';
@@ -83,6 +84,15 @@ export class PaginationBuilder {
 
 	public setFilter(filter: PagesFilter): this {
 		this.filter = filter;
+		return this;
+	}
+
+	public enforceOriginalUserOnly(): this {
+		if (this.options.originalUserOnly) {
+			this.setFilter(async (interaction: ButtonInteraction) => {
+				return interaction.user?.id === interaction.message?.interaction?.user?.id;
+			});
+		}
 		return this;
 	}
 

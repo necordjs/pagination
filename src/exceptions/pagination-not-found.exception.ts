@@ -1,6 +1,6 @@
-import { NotFoundException } from '@nestjs/common';
+import { PaginationException } from './index';
 
-export class PaginationNotFoundException extends NotFoundException {
+export class PaginationNotFoundException extends PaginationException {
 	public constructor() {
 		super('Pagination builder not found');
 	}

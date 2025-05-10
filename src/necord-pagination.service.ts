@@ -52,6 +52,10 @@ export class NecordPaginationService {
 	public register(factory: (builder: PaginationBuilder) => PaginationBuilder): PaginationBuilder {
 		const builder = factory(new PaginationBuilder(this.options));
 
+		if (this.options.originalUserOnly) {
+			builder.enforceOriginalUserOnly();
+		}
+
 		this.cache.set(builder.customId, builder);
 
 		return builder;
