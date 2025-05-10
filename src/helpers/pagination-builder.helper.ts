@@ -90,7 +90,7 @@ export class PaginationBuilder {
 	public enforceOriginalUserOnly(): this {
 		if (this.options.originalUserOnly) {
 			this.setFilter(async (interaction: ButtonInteraction) => {
-				return interaction.user?.id === interaction.message?.interaction?.user?.id;
+				return this.originalUserOnlyFilter(interaction) && (await this.filter(interaction));
 			});
 		}
 		return this;
@@ -119,6 +119,10 @@ export class PaginationBuilder {
 					? [...pageOptions.components, row]
 					: [row, ...pageOptions.components]
 		};
+	}
+
+	private originalUserOnlyFilter(interaction: ButtonInteraction): boolean {
+		return interaction.user?.id === interaction.message?.interactionMetadata?.user?.id;
 	}
 
 	private generateButtons(page: number) {
