@@ -19,8 +19,12 @@ class PaginationLocalSpec implements OnModuleInit {
 	@SlashCommand({ name: 'pagination', description: 'Test pagination' })
 	public async onPagination(@Context() [interaction]: SlashCommandContext) {
 		const pagination = this.paginationService.get('test');
+		const pageOptions = await pagination.build();
 
-		return interaction.reply({ ...(await pagination.build()), ephemeral: true });
+		return interaction.reply({
+			...pageOptions,
+			flags: ['Ephemeral']
+		});
 	}
 }
 

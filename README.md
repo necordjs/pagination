@@ -112,6 +112,42 @@ export class AppService implements OnModuleInit {
 Congratulations! You have successfully created your first pagination!
 Just use `pagination` command and you will see your pagination!
 
+### Registering Pagination Inside Command
+
+You can also register pagination's dynamically inside your command handlers instead of `onModuleInit` hook.
+
+```ts
+import { Injectable } from "@nestjs/common";
+import { NecordPaginationService, PageBuilder } from "@necord/pagination";
+import { Context, SlashCommand, SlashCommandContext } from "necord";
+
+@Injectable()
+export class AppService {
+    public constructor(private readonly paginationService: NecordPaginationService) {
+    }
+
+    @SlashCommand({ name: "dynamic-pagination", description: "Register pagination inside command" })
+    public async onDynamicPagination(@Context() [interaction]: SlashCommandContext) {
+        const pagination = this.paginationService.create(builder =>
+            builder
+                .setCustomId(`dynamic-${interaction.user.id}`)
+                .setFilter(i => i.user.id === interaction.user.id)
+                .setPages([
+                    new PageBuilder().setContent("Dynamic Page 1"),
+                    new PageBuilder().setContent("Dynamic Page 2")
+                ])
+        );
+        const page = await pagination.build();
+
+        return interaction.reply(page);
+    }
+}
+```
+
+> ⚠️ You should ensure that `setCustomId` is unique per user/session if you register dynamically to avoid collisions.
+
+You can view a working example [here](https://github.com/necordjs/examples/tree/master/06-pagination).
+
 ## Backers
 
 <a href="https://opencollective.com/necord" target="_blank"><img src="https://opencollective.com/necord/backers.svg?width=1000"></a>

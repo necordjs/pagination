@@ -1,6 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { NecordPaginationService } from './necord-pagination.service';
-import { Button, ButtonContext, ComponentParam, Context, Modal, ModalParam } from 'necord';
+import {
+	Button,
+	ButtonContext,
+	ComponentParam,
+	Context,
+	Modal,
+	ModalContext,
+	ModalParam
+} from 'necord';
 import { PaginationForbiddenException, PaginationNotFoundException } from './exceptions';
 import { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
 import { ModalAppearance, NecordPaginationOptions } from './interfaces';
@@ -23,19 +31,16 @@ export class NecordPaginationController {
 		const modalOptions: ModalAppearance = Object.assign(
 			{
 				title: 'Traversal',
-				label: 'Page',
+				label: `Page (1 - ${pageBuilder.maxPages})`,
 				placeholder: 'Enter page number'
 			},
 			this.options?.modal ?? {}
 		);
 
-		const modal = new ModalBuilder()
-			.setCustomId(`necord-pagination-modal/${name}`)
-			.setTitle(modalOptions.title);
-
 		if (!pageBuilder) throw new PaginationNotFoundException();
 
-		if (!(await pageBuilder.filter(interaction))) throw new PaginationForbiddenException();
+		if (!(await pageBuilder.filter(interaction)))
+			throw new PaginationForbiddenException('You are not allowed to use this button');
 
 		const pageInput = new TextInputBuilder()
 			.setLabel(modalOptions.label)
@@ -48,7 +53,10 @@ export class NecordPaginationController {
 
 		const row = new ActionRowBuilder<TextInputBuilder>().addComponents(pageInput);
 
-		modal.addComponents(row);
+		const modal = new ModalBuilder()
+			.setCustomId(`necord-pagination-modal/${name}`)
+			.setTitle(modalOptions.title)
+			.setComponents(row);
 
 		return interaction.showModal(modal);
 	}
@@ -63,7 +71,8 @@ export class NecordPaginationController {
 
 		if (!pageBuilder) throw new PaginationNotFoundException();
 
-		if (!(await pageBuilder.filter(interaction))) throw new PaginationForbiddenException();
+		if (!(await pageBuilder.filter(interaction)))
+			throw new PaginationForbiddenException('You are not allowed to use this button');
 
 		const pageOptions = await pageBuilder.build(+page);
 
@@ -71,13 +80,19 @@ export class NecordPaginationController {
 	}
 
 	@Modal('necord-pagination-modal/:name')
-	public async onTraversalModal(@Context() [interaction], @ModalParam('name') name: string) {
+	public async onTraversalModal(
+		@Context() [interaction]: ModalContext,
+		@ModalParam('name') name: string
+	) {
 		const pageBuilder = this.paginationService.get(name);
 		const page = +interaction.fields.getTextInputValue('page');
 
+		if (!interaction.isFromMessage()) return;
+
 		if (!pageBuilder) throw new PaginationNotFoundException();
 
-		if (!(await pageBuilder.filter(interaction))) throw new PaginationForbiddenException();
+		if (!(await pageBuilder.filter(interaction)))
+			throw new PaginationForbiddenException('You are not allowed to use this button');
 
 		const pageOptions = await pageBuilder.build(page);
 

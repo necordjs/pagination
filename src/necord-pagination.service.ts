@@ -4,6 +4,7 @@ import { NecordPaginationOptions } from './interfaces';
 import { MODULE_OPTIONS_TOKEN } from './necord-pagination.module-definition';
 import { PaginationAction } from './enums';
 import { ButtonStyle } from 'discord.js';
+import { PaginationNotFoundException } from './exceptions';
 
 @Injectable()
 export class NecordPaginationService {
@@ -49,6 +50,10 @@ export class NecordPaginationService {
 		this.options = this.deepMerge(NecordPaginationService.DEFAULT_OPTIONS, options ?? {});
 	}
 
+	/**
+	 * Register a new pagination builder
+	 * @param factory
+	 */
 	public register(factory: (builder: PaginationBuilder) => PaginationBuilder): PaginationBuilder {
 		const builder = factory(new PaginationBuilder(this.options));
 
@@ -57,12 +62,40 @@ export class NecordPaginationService {
 		return builder;
 	}
 
+	/**
+	 * Alias for register method
+	 * @param factory
+	 */
+	public create(factory: (builder: PaginationBuilder) => PaginationBuilder): PaginationBuilder {
+		return this.register(factory);
+	}
+
 	public get(customId: string): PaginationBuilder {
-		return this.cache.get(customId);
+		const builder = this.cache.get(customId);
+
+		if (!builder) {
+			throw new PaginationNotFoundException();
+		}
+
+		return builder;
 	}
 
 	public delete(customId: string): boolean {
 		return this.cache.delete(customId);
+	}
+
+	public copy(customId: string): PaginationBuilder {
+		const builder = this.get(customId);
+
+		const copy = builder.copy();
+
+		this.cache.set(copy.customId, copy);
+
+		return copy;
+	}
+
+	public clear(): void {
+		this.cache.clear();
 	}
 
 	private deepMerge<T>(target: T, source: T): T {

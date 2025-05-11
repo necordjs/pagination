@@ -1,7 +1,7 @@
-import { ForbiddenException } from '@nestjs/common';
+import { PaginationException } from './pagination.exception';
 
-export class PaginationForbiddenException extends ForbiddenException {
-	public constructor() {
-		super('Pagination forbidden');
+export class PaginationForbiddenException extends PaginationException {
+	public constructor(message?: string) {
+		super(message || 'Pagination forbidden');
 	}
 }

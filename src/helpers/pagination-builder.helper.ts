@@ -9,8 +9,8 @@ import { NecordPaginationOptions } from '../interfaces';
 import { PaginationAction } from '../enums';
 import assert = require('assert');
 
-type PagesFactory = (page: number, maxPages: number) => Promise<PageBuilder>;
-type PagesFilter = (interaction: BaseInteraction) => Promise<boolean>;
+type PagesFactory = (page: number, maxPages: number) => Promise<PageBuilder> | PageBuilder;
+type PagesFilter = (interaction: BaseInteraction) => Promise<boolean> | boolean;
 
 export class PaginationBuilder {
 	public customId: string;
@@ -29,7 +29,7 @@ export class PaginationBuilder {
 		this._maxPages = value;
 	}
 
-	public filter: PagesFilter = async () => true;
+	public filters: PagesFilter[] = [];
 
 	private pages: PageBuilder[] = [];
 
@@ -38,7 +38,7 @@ export class PaginationBuilder {
 	private readonly options: NecordPaginationOptions;
 
 	public constructor(options: NecordPaginationOptions) {
-		this.options = options;
+		this.options = { ...options };
 	}
 
 	public setCustomId(customId: string): this {
@@ -58,6 +58,11 @@ export class PaginationBuilder {
 
 	public addPage(page: PageBuilder): this {
 		this.pages.push(page);
+		return this;
+	}
+
+	public clearPages(): this {
+		this.pages = [];
 		return this;
 	}
 
@@ -82,8 +87,37 @@ export class PaginationBuilder {
 	}
 
 	public setFilter(filter: PagesFilter): this {
-		this.filter = filter;
+		this.filters = [filter];
 		return this;
+	}
+
+	public setFilters(filters: PagesFilter[]): this {
+		this.filters = filters;
+		return this;
+	}
+
+	public addFilter(filter: PagesFilter): this {
+		this.filters.push(filter);
+		return this;
+	}
+
+	public clearFilters(): this {
+		this.filters = [];
+		return this;
+	}
+
+	public async filter(interaction: BaseInteraction): Promise<boolean> {
+		if (this.filters.length === 0) {
+			return true;
+		}
+
+		for (const filter of this.filters) {
+			if (!(await filter(interaction))) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	public async build(page = 1): Promise<PageOptions> {
@@ -109,6 +143,22 @@ export class PaginationBuilder {
 					? [...pageOptions.components, row]
 					: [row, ...pageOptions.components]
 		};
+	}
+
+	public copy(): PaginationBuilder {
+		const copy = new PaginationBuilder(this.options);
+		const customId = [this.customId, 'copy', crypto.randomUUID()].join('.');
+
+		copy.setCustomId(customId);
+		copy.setMaxPages(this.maxPages);
+		copy.setPages(this.pages);
+		copy.setPagesFactory(this.pagesFactory);
+		copy.setButtonsAppearance(this.options.buttons);
+		copy.setAllowSkip(this.options.allowSkip);
+		copy.setAllowTraversal(this.options.allowTraversal);
+		copy.setFilters(this.filters);
+
+		return copy;
 	}
 
 	private generateButtons(page: number) {
