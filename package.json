@@ -60,7 +60,7 @@
 		"@nestjs/testing": "^11.1.0",
 		"@release-it/conventional-changelog": "^10.0.1",
 		"@types/jest": "^29.5.14",
-		"@types/node": "22.15.24",
+		"@types/node": "22.15.27",
 		"discord.js": "14.19.3",
 		"eslint": "^9.26.0",
 		"eslint-config-prettier": "10.1.5",
