@@ -23,4 +23,14 @@ export interface NecordPaginationOptions {
 	allowSkip?: boolean;
 	allowTraversal?: boolean;
 	buttonsPosition?: 'start' | 'end';
+	cache?: {
+		/**
+		 * Maximum size of the cache, which stores pagination builders.
+		 * This is useful to prevent memory leaks in long-running applications.
+		 * If the cache is full, the oldest pagination builders will be removed.
+		 * Set `Infinity` to disable the cache.
+		 * @default Infinity
+		 */
+		maxSize?: number;
+	};
 }

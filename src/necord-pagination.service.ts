@@ -1,9 +1,9 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { PaginationBuilder } from './helpers';
 import { NecordPaginationOptions } from './interfaces';
 import { MODULE_OPTIONS_TOKEN } from './necord-pagination.module-definition';
 import { PaginationAction } from './enums';
-import { ButtonStyle } from 'discord.js';
+import { ButtonStyle, LimitedCollection } from 'discord.js';
 import { PaginationNotFoundException } from './exceptions';
 
 @Injectable()
@@ -38,16 +38,22 @@ export class NecordPaginationService {
 				emoji: '🔢',
 				style: ButtonStyle.Primary
 			}
+		},
+		cache: {
+			maxSize: Infinity
 		}
 	};
 
-	private readonly cache = new Map<string, PaginationBuilder>();
+	private readonly cache: LimitedCollection<string, PaginationBuilder>;
 
 	public constructor(
 		@Inject(MODULE_OPTIONS_TOKEN)
 		private readonly options: NecordPaginationOptions
 	) {
 		this.options = this.deepMerge(NecordPaginationService.DEFAULT_OPTIONS, options ?? {});
+		this.cache = new LimitedCollection<string, PaginationBuilder>({
+			maxSize: this.options.cache?.maxSize
+		});
 	}
 
 	/**
