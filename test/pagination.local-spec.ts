@@ -28,4 +28,4 @@ class PaginationLocalSpec implements OnModuleInit {
 	}
 }
 
-createApplication(PaginationLocalSpec);
+void createApplication(PaginationLocalSpec);

@@ -17,7 +17,7 @@ export const createApplication = (...providers: Provider[]) => {
 					IntentsBitField.Flags.MessageContent
 				],
 				prefix: '!',
-				development: [process.env!.DISCORD_TEST_GUILD]
+				development: [process.env.DISCORD_TEST_GUILD]
 			}),
 			NecordPaginationModule.forRoot({
 				allowSkip: true,
