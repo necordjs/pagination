@@ -3,7 +3,7 @@
 	"description": "A lightweight Pagination module for Necord",
 	"version": "2.2.0",
 	"scripts": {
-		"build": "rimraf dist && tsc -p tsconfig.build.json",
+		"build": "rimraf -rf dist && tsc -p tsconfig.build.json",
 		"prepublish:npm": "npm run build",
 		"publish:npm": "release-it",
 		"prepublish:dev": "npm run build",
@@ -48,7 +48,9 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"tslib": "^2.8.1"
+	},
 	"devDependencies": {
 		"@commitlint/cli": "19.8.1",
 		"@commitlint/config-angular": "19.8.1",
