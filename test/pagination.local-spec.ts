@@ -1,7 +1,8 @@
-import { createApplication } from './utils.local-spec';
 import { Context, SlashCommand, SlashCommandContext } from 'necord';
-import { NecordPaginationService, PageBuilder } from '../src';
 import { Injectable, OnModuleInit } from '@nestjs/common';
+
+import { NecordPaginationService, PageBuilder } from '../src';
+import { createApplication } from './utils.local-spec';
 
 @Injectable()
 class PaginationLocalSpec implements OnModuleInit {

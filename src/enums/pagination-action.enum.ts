@@ -1,7 +1,7 @@
 export enum PaginationAction {
-	First = 'first',
-	Next = 'next',
 	Back = 'back',
+	First = 'first',
 	Last = 'last',
+	Next = 'next',
 	Traverse = 'traverse'
 }

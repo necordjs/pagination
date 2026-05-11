@@ -1,5 +1,3 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { NecordPaginationService } from './necord-pagination.service';
 import {
 	Button,
 	ButtonContext,
@@ -9,10 +7,13 @@ import {
 	ModalContext,
 	ModalParam
 } from 'necord';
-import { PaginationForbiddenException, PaginationNotFoundException } from './exceptions';
 import { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
-import { ModalAppearance, NecordPaginationOptions } from './interfaces';
+import { Inject, Injectable } from '@nestjs/common';
+
+import { PaginationForbiddenException, PaginationNotFoundException } from './exceptions';
 import { MODULE_OPTIONS_TOKEN } from './necord-pagination.module-definition';
+import { ModalAppearance, NecordPaginationOptions } from './interfaces';
+import { NecordPaginationService } from './necord-pagination.service';
 
 @Injectable()
 export class NecordPaginationController {

@@ -4,10 +4,11 @@ import {
 	BaseMessageOptions as PageOptions,
 	ButtonBuilder
 } from 'discord.js';
-import { PageBuilder } from './page-builder.helper';
-import { NecordPaginationOptions } from '../interfaces';
-import { PaginationAction } from '../enums';
 import assert = require('assert');
+
+import { NecordPaginationOptions } from '../interfaces';
+import { PageBuilder } from './page-builder.helper';
+import { PaginationAction } from '../enums';
 
 type PagesFactory = (page: number, maxPages: number) => Promise<PageBuilder> | PageBuilder;
 type PagesFilter = (interaction: BaseInteraction) => Promise<boolean> | boolean;
@@ -177,7 +178,7 @@ export class PaginationBuilder {
 			let navigationPage = String(page);
 			let disabled = false;
 
-			switch (action) {
+			switch (action as PaginationAction) {
 				case PaginationAction.First:
 					navigationPage = `-1`;
 

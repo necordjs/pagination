@@ -1,4 +1,5 @@
 import { ButtonStyle } from 'discord.js';
+
 import { PaginationAction } from '../enums';
 
 export interface ButtonAppearance {

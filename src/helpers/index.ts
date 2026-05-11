@@ -1,2 +1,2 @@
-export * from './pagination-builder.helper';
 export * from './page-builder.helper';
+export * from './pagination-builder.helper';
