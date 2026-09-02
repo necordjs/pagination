@@ -1,4 +1,4 @@
-import { PaginationException, PaginationNotFoundException } from '../../src';
+import { PaginationException, PaginationNotFoundException } from '../../src/index.js';
 
 describe('PaginationNotFoundException', () => {
 	it('should use default message when none is provided', () => {

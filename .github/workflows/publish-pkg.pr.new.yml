@@ -1,4 +1,5 @@
 name: Publish with pkg.pr.new
+
 on:
   pull_request:
   push:
@@ -6,6 +7,9 @@ on:
       - '**'
     tags:
       - '!**'
+
+permissions:
+  contents: read
 
 jobs:
   publish:
@@ -27,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Verify package
+        run: npm run test:package
 
       - run: npx pkg-pr-new publish --compact

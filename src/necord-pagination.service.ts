@@ -1,11 +1,11 @@
 import { ButtonStyle, LimitedCollection } from 'discord.js';
 import { Inject, Injectable } from '@nestjs/common';
 
-import { MODULE_OPTIONS_TOKEN } from './necord-pagination.module-definition';
-import { PaginationNotFoundException } from './exceptions';
-import { NecordPaginationOptions } from './interfaces';
-import { PaginationBuilder } from './helpers';
-import { PaginationAction } from './enums';
+import { MODULE_OPTIONS_TOKEN } from './necord-pagination.module-definition.js';
+import { PaginationNotFoundException } from './exceptions/index.js';
+import { NecordPaginationOptions } from './interfaces/index.js';
+import { PaginationBuilder } from './helpers/index.js';
+import { PaginationAction } from './enums/index.js';
 
 @Injectable()
 export class NecordPaginationService {

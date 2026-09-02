@@ -1,8 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 
-import { ConfigurableModuleClass } from './necord-pagination.module-definition';
-import { NecordPaginationController } from './necord-pagination.controller';
-import { NecordPaginationService } from './necord-pagination.service';
+import { ConfigurableModuleClass } from './necord-pagination.module-definition.js';
+import { NecordPaginationController } from './necord-pagination.controller.js';
+import { NecordPaginationService } from './necord-pagination.service.js';
 
 @Global()
 @Module({

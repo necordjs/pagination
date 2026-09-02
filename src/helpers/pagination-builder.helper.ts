@@ -4,11 +4,11 @@ import {
 	BaseMessageOptions as PageOptions,
 	ButtonBuilder
 } from 'discord.js';
-import assert = require('assert');
+import assert from 'node:assert';
 
-import { NecordPaginationOptions } from '../interfaces';
-import { PageBuilder } from './page-builder.helper';
-import { PaginationAction } from '../enums';
+import { NecordPaginationOptions } from '../interfaces/index.js';
+import { PageBuilder } from './page-builder.helper.js';
+import { PaginationAction } from '../enums/index.js';
 
 type PagesFactory = (page: number, maxPages: number) => Promise<PageBuilder> | PageBuilder;
 type PagesFilter = (interaction: BaseInteraction) => Promise<boolean> | boolean;
@@ -135,14 +135,13 @@ export class PaginationBuilder {
 		const pageBuilder = this.pages[page - 1] ?? (await this.pagesFactory(page, this.maxPages));
 		const pageOptions = pageBuilder.build();
 		const buttons = this.generateButtons(page);
+		const components = pageOptions.components as NonNullable<PageOptions['components']>;
 
 		const row = new ActionRowBuilder<ButtonBuilder>().addComponents(buttons);
 		return {
 			...pageOptions,
 			components:
-				this.options.buttonsPosition === 'end'
-					? [...pageOptions.components, row]
-					: [row, ...pageOptions.components]
+				this.options.buttonsPosition === 'end' ? [...components, row] : [row, ...components]
 		};
 	}
 
@@ -155,8 +154,8 @@ export class PaginationBuilder {
 		copy.setPages(this.pages);
 		copy.setPagesFactory(this.pagesFactory);
 		copy.setButtonsAppearance(this.options.buttons);
-		copy.setAllowSkip(this.options.allowSkip);
-		copy.setAllowTraversal(this.options.allowTraversal);
+		copy.setAllowSkip(this.options.allowSkip as boolean);
+		copy.setAllowTraversal(this.options.allowTraversal as boolean);
 		copy.setFilters(this.filters);
 
 		return copy;
@@ -164,17 +163,18 @@ export class PaginationBuilder {
 
 	private generateButtons(page: number) {
 		const options: NecordPaginationOptions = { ...this.options };
+		const buttons = options.buttons!;
 
 		if (!options.allowSkip) {
-			delete options.buttons[PaginationAction.First];
-			delete options.buttons[PaginationAction.Last];
+			delete buttons[PaginationAction.First];
+			delete buttons[PaginationAction.Last];
 		}
 
 		if (!options.allowTraversal) {
-			delete options.buttons[PaginationAction.Traverse];
+			delete buttons[PaginationAction.Traverse];
 		}
 
-		return Object.entries(this.options.buttons).map(([action, button]) => {
+		return Object.entries(buttons).map(([action, button]) => {
 			let navigationPage = String(page);
 			let disabled = false;
 
@@ -213,8 +213,8 @@ export class PaginationBuilder {
 			}
 
 			const builder = new ButtonBuilder()
-				.setStyle(button.style)
-				.setLabel(button.label)
+				.setStyle(button.style!)
+				.setLabel(button.label!)
 				.setDisabled(disabled)
 				.setCustomId(`necord-pagination/${this.customId}/${navigationPage}`);
 

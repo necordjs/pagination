@@ -2,22 +2,28 @@
 	"name": "@necord/pagination",
 	"description": "A lightweight Pagination module for Necord",
 	"version": "2.2.0",
+	"type": "module",
 	"scripts": {
-		"build": "rimraf -rf dist && tsc -p tsconfig.build.json",
+		"build": "rimraf dist && tsc -p tsconfig.build.json",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"prepublish:npm": "npm run build",
 		"publish:npm": "release-it",
 		"prepublish:dev": "npm run build",
 		"publish:dev": "npm publish --access public --tag dev",
 		"prepare": "husky",
 		"format": "prettier --write \"{src,apps,libs,test}/**/*.ts\"",
-		"lint": "eslint --ignore-pattern .gitignore \"{src,apps,libs,test}/**/*.ts\"",
-		"test": "jest",
-		"test:watch": "jest --watch",
-		"test:cov": "jest --coverage",
-		"test:ci": "jest --ci --passWithNoTests --coverage"
+		"lint": "oxlint --type-aware --deny-warnings src test",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:cov": "vitest run --coverage",
+		"test:ci": "vitest run --coverage",
+		"test:package": "npm run build && npm pack --dry-run && node --input-type=module --eval \"await import('@necord/pagination')\" && node --eval \"require('@necord/pagination')\""
 	},
 	"lint-staged": {
-		"*.ts": "npm run format"
+		"*.ts": [
+			"npm run format",
+			"npm run test:ci"
+		]
 	},
 	"directories": {
 		"lib": "src",
@@ -29,6 +35,16 @@
 	},
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"dist"
+	],
 	"keywords": [
 		"nestjs",
 		"necord",
@@ -58,40 +74,40 @@
 	"devDependencies": {
 		"@commitlint/cli": "21.2.2",
 		"@commitlint/config-angular": "21.2.2",
-		"@eslint/eslintrc": "^3.3.1",
-		"@eslint/js": "^10.0.1",
 		"@nestjs/common": "12.0.1",
 		"@nestjs/core": "12.0.1",
-		"@nestjs/testing": "^12.0.1",
+		"@nestjs/testing": "12.0.1",
 		"@release-it/conventional-changelog": "^12.0.0",
-		"@types/jest": "^30.0.0",
 		"@types/node": "26.4.0",
+		"@vitest/coverage-v8": "4.1.11",
 		"discord.js": "14.27.0",
 		"eslint": "^10.0.0",
-		"eslint-config-prettier": "10.1.8",
-		"eslint-plugin-perfectionist": "^5.9.0",
+		"eslint-plugin-perfectionist": "5.11.0",
 		"eslint-plugin-prettier": "5.5.6",
-		"globals": "^17.0.0",
 		"husky": "9.1.7",
-		"jest": "^30.0.0",
 		"lint-staged": "17.4.1",
-		"necord": "6.14.0",
+		"necord": "^7.0.0",
+		"oxlint": "1.81.0",
+		"oxlint-tsgolint": "7.0.2001",
 		"prettier": "3.9.6",
 		"reflect-metadata": "0.2.2",
 		"release-it": "21.0.2",
 		"rimraf": "6.1.3",
 		"rxjs": "7.8.2",
-		"ts-jest": "^29.3.2",
 		"ts-node": "10.9.2",
 		"typescript": "7.0.2",
-		"typescript-eslint": "^8.32.0"
+		"vitest": "4.1.11"
 	},
 	"peerDependencies": {
-		"@nestjs/common": "^10.2.0 || ^11.0.0",
-		"@nestjs/core": "^10.2.0 || ^11.0.0",
+		"@nestjs/common": "^10.2.0 || ^11.0.0 || ^12.0.0",
+		"@nestjs/core": "^10.2.0 || ^11.0.0 || ^12.0.0",
 		"discord.js": "^14.0.1",
-		"necord": "^6.0.0",
+		"necord": "^7.0.0",
 		"reflect-metadata": "^0.2.1",
 		"rxjs": "^7.2.0"
+	},
+	"engines": {
+		"node": "^20.19.0 || >=22.13.0",
+		"npm": ">=8.6.0"
 	}
 }

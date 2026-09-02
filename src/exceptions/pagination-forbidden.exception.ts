@@ -1,4 +1,4 @@
-import { PaginationException } from './pagination.exception';
+import { PaginationException } from './pagination.exception.js';
 
 export class PaginationForbiddenException extends PaginationException {
 	public constructor(message?: string) {

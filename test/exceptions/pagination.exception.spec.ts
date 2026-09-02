@@ -1,4 +1,4 @@
-import { PaginationException } from '../../src';
+import { PaginationException } from '../../src/index.js';
 
 class TestPaginationException extends PaginationException {
 	constructor(message: string) {

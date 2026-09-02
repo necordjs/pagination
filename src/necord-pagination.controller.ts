@@ -10,10 +10,10 @@ import {
 import { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
 import { Inject, Injectable } from '@nestjs/common';
 
-import { PaginationForbiddenException, PaginationNotFoundException } from './exceptions';
-import { MODULE_OPTIONS_TOKEN } from './necord-pagination.module-definition';
-import { ModalAppearance, NecordPaginationOptions } from './interfaces';
-import { NecordPaginationService } from './necord-pagination.service';
+import { PaginationForbiddenException, PaginationNotFoundException } from './exceptions/index.js';
+import { ModalAppearance, NecordPaginationOptions } from './interfaces/index.js';
+import { MODULE_OPTIONS_TOKEN } from './necord-pagination.module-definition.js';
+import { NecordPaginationService } from './necord-pagination.service.js';
 
 @Injectable()
 export class NecordPaginationController {
@@ -29,7 +29,7 @@ export class NecordPaginationController {
 		@ComponentParam('name') name: string
 	) {
 		const pageBuilder = this.paginationService.get(name);
-		const modalOptions: ModalAppearance = Object.assign(
+		const modalOptions: Required<ModalAppearance> = Object.assign(
 			{
 				title: 'Traversal',
 				label: `Page (1 - ${pageBuilder.maxPages})`,

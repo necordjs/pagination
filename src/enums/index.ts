@@ -1,1 +1,1 @@
-export * from './pagination-action.enum';
+export * from './pagination-action.enum.js';
