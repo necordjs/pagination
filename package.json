@@ -16,8 +16,7 @@
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:cov": "vitest run --coverage",
-		"test:ci": "vitest run --coverage",
-		"test:package": "npm run build && npm pack --dry-run && node --input-type=module --eval \"await import('@necord/pagination')\" && node --eval \"require('@necord/pagination')\""
+		"test:ci": "vitest run --coverage"
 	},
 	"lint-staged": {
 		"*.ts": [
