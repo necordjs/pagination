@@ -17,7 +17,6 @@ export default defineConfig({
 		globals: true,
 		environment: 'node',
 		include: ['test/**/*.spec.ts'],
-		exclude: ['test/**/*.local-spec.ts'],
 		setupFiles: ['reflect-metadata'],
 		passWithNoTests: true,
 		coverage: {
