@@ -1,1 +1,1 @@
-export * from './necord-pagination-options.interface';
+export * from './necord-pagination-options.interface.js';

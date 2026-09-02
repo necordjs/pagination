@@ -3,13 +3,13 @@ import { IntentsBitField } from 'discord.js';
 import { NestFactory } from '@nestjs/core';
 import { NecordModule } from 'necord';
 
-import { NecordPaginationModule } from '../src';
+import { NecordPaginationModule } from '../src/index.js';
 
 export const createApplication = (...providers: Provider[]) => {
 	@Module({
 		imports: [
 			NecordModule.forRoot({
-				token: process.env.DISCORD_TOKEN,
+				token: process.env.DISCORD_TOKEN!,
 				intents: [
 					IntentsBitField.Flags.Guilds,
 					IntentsBitField.Flags.DirectMessages,
@@ -18,7 +18,7 @@ export const createApplication = (...providers: Provider[]) => {
 					IntentsBitField.Flags.MessageContent
 				],
 				prefix: '!',
-				development: [process.env.DISCORD_TEST_GUILD]
+				development: [process.env.DISCORD_TEST_GUILD!]
 			}),
 			NecordPaginationModule.forRoot({
 				allowSkip: true,

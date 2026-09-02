@@ -1,6 +1,6 @@
 import { ButtonStyle } from 'discord.js';
 
-import { PaginationAction } from '../enums';
+import { PaginationAction } from '../enums/index.js';
 
 export interface ButtonAppearance {
 	style: Exclude<ButtonStyle, ButtonStyle.Link>;

@@ -1,3 +1,3 @@
-export * from './pagination-forbidden.exception';
-export * from './pagination-not-found.exception';
-export * from './pagination.exception';
+export * from './pagination-forbidden.exception.js';
+export * from './pagination-not-found.exception.js';
+export * from './pagination.exception.js';

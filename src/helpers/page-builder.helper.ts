@@ -5,13 +5,13 @@ type NotReadOnly<T> = {
 };
 
 export class PageBuilder {
-	private content: PageOptions['content'] = null;
+	private content: PageOptions['content'] | null = null;
 
-	private embeds: NotReadOnly<PageOptions['embeds']> = [];
+	private embeds: NotReadOnly<NonNullable<PageOptions['embeds']>> = [];
 
-	private files: NotReadOnly<PageOptions['files']> = [];
+	private files: NotReadOnly<NonNullable<PageOptions['files']>> = [];
 
-	private components: PageOptions['components'] = [];
+	private components: NonNullable<PageOptions['components']> = [];
 
 	public setContent(content: PageOptions['content']): this {
 		this.content = content;
@@ -39,13 +39,13 @@ export class PageBuilder {
 	}
 
 	public setComponents(components: PageOptions['components']): this {
-		this.components = components;
+		this.components = components as NonNullable<PageOptions['components']>;
 		return this;
 	}
 
 	public build(): PageOptions {
 		return {
-			content: this.content,
+			content: this.content as PageOptions['content'],
 			embeds: this.embeds,
 			files: this.files,
 			components: this.components

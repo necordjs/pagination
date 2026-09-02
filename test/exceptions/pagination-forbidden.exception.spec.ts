@@ -1,4 +1,4 @@
-import { PaginationException, PaginationForbiddenException } from '../../src';
+import { PaginationException, PaginationForbiddenException } from '../../src/index.js';
 
 describe('PaginationForbiddenException', () => {
 	it('should use default message when none is provided', () => {
