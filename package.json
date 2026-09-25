@@ -86,7 +86,7 @@
 		"husky": "9.1.7",
 		"lint-staged": "17.5.1",
 		"necord": "^7.0.0",
-		"oxlint": "1.84.0",
+		"oxlint": "1.85.0",
 		"oxlint-tsgolint": "7.0.2002",
 		"prettier": "3.9.8",
 		"reflect-metadata": "0.2.2",
